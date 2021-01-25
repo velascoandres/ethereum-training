@@ -15,6 +15,8 @@ contract UsersContract {
 
     address[] private total;
 
+    event onUserJoined(address, string);
+
 
     function join(string memory name, string memory surname) public{
        
@@ -25,6 +27,9 @@ contract UsersContract {
        user.surname = surname;
        joinedUsers[msg.sender] = true;
        total.push(msg.sender);
+
+       emit onUserJoined(msg.sender, string(abi.encodePacked(name, ' ' , surname)));
+
     }
 
     function getUser(address addr) public view returns (string memory, string memory){
