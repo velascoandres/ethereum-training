@@ -27,11 +27,4 @@ var input = {
   };
 
 
-const output = JSON.parse(solc.compile(JSON.stringify(input)));
-
-
-for (const contractName in output.contracts['UserContract.sol']){
-    console.log(chalk.green(contractName));
-    console.log(chalk.cyan( output.contracts['UserContract.sol'][contractName].evm.bytecode.object));
-}
-
+module.exports = JSON.parse(solc.compile(JSON.stringify(input)));
