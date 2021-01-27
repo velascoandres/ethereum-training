@@ -1,7 +1,7 @@
+
 const path = require('path');
 const fs = require('fs');
 const solc = require('solc');
-const chalk = require('chalk');
 
 const contractPath = path.resolve(
     __dirname,
@@ -27,4 +27,6 @@ var input = {
   };
 
 
-module.exports = JSON.parse(solc.compile(JSON.stringify(input)));
+const compileResult = JSON.parse(solc.compile(JSON.stringify(input)));
+
+module.exports = compileResult.contracts['UserContract.sol']['UsersContract']

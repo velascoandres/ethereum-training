@@ -1,7 +1,5 @@
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
+pragma solidity 0.8.0;
 contract UsersContract {
     
     struct User {
@@ -20,7 +18,7 @@ contract UsersContract {
 
     function join(string memory name, string memory surname) public{
        
-       require(!usersJoined(msg.sender));
+       require(!usersJoined(msg.sender), 'Ya existe el usuario');
 
        User  storage user =  users[msg.sender];
        user.name = name;
@@ -33,7 +31,7 @@ contract UsersContract {
     }
 
     function getUser(address addr) public view returns (string memory, string memory){
-        require(usersJoined(addr));
+        require(usersJoined(addr), 'No existe el usuario');
         User memory user = users[addr];
         return(user.name, user.surname);
     }
